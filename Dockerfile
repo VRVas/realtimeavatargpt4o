@@ -14,7 +14,7 @@ WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
 
-RUN poetry install --no-dev --no-root
+RUN poetry install --only main --no-root
 
 COPY realtime-api-plus /app
 

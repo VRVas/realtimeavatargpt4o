@@ -17,10 +17,11 @@ services:
     ports:
       - 8080:8080
     environment:
-      - AZURE_OPENAI_ENDPOINT=wss://<your aoai resource>.openai.azure.com
+      - AZURE_OPENAI_ENDPOINT=https://admin-m77gl75x-eastus2.cognitiveservices.azure.com/
       - AZURE_OPENAI_DEPLOYMENT=gpt-4o-realtime-preview
-      - AZURE_OPENAI_KEY=<your openai key> # optional, set this for key based auth
-      - SPEECH_REGION=<region>
+      - AZURE_OPENAI_KEY=FJNRkv7gRFJKTosOUeR8OW9AWvL9rDM5sW6br0QX1d6LkkIkvJ8BJQQJ99BBACHYHv6XJ3w3AAAAACOGFEt3
+      # optional, set this for key based auth
+      - SPEECH_REGION=eastus2
       - SPEECH_RESOURCE_ID=<your speech resource id> # optional, set either this or SPEECH_KEY
-      - SPEECH_KEY=<your speech key> # optional, set either this or SPEECH_RESOURCE_ID
+      - SPEECH_KEY=2BnBqb8gNchQGtumJlQUYu6JZqEsZCX2089e6xaqf1cPGoc1iFsAJQQJ99BDACHYHv6XJ3w3AAAYACOGp0X1 # optional, set either this or SPEECH_RESOURCE_ID
       - AZURE_CLIENT_ID=<your azure client id> # optional, set this for Entra ID auth

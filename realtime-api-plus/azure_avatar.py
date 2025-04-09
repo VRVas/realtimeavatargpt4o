@@ -90,18 +90,26 @@ class Client:
             async for chunk in input_stream:
                 inputs.append(chunk)
             contents = "".join(inputs)
+
             if start_time < self.interruption_time:
                 logger.info("Synthesis interrupted, ignoring this turn")
                 return
+            
             result = current_synthesizer.start_speaking_text(contents)
             stream = speechsdk.AudioDataStream(result)
             loop = asyncio.get_running_loop()
+
             while True:
+                if start_time < self.interruption_time:
+                    logger.info("Synthesis interrupted in real time, stopping read loop.")
+                    break
                 chunk = bytes(2400 * 4)
                 read = await loop.run_in_executor(None, stream.read_data, chunk)
                 if read == 0:
                     break
+
                 aio_stream.write_data(chunk[:read])
+                
             if stream.status == speechsdk.StreamStatus.Canceled:
                 logger.error(
                     f"Speech synthesis failed: {stream.status}, details: {stream.cancellation_details.error_details}"
@@ -114,13 +122,13 @@ class Client:
     async def interrupt(self):
         self.interruption_time = time.time()
         # todo: uncomment this when the service supports it
-        # try:
-        #     connection = speechsdk.Connection.from_speech_synthesizer(self.speech_synthesizer)
-        #     sending = connection.send_message_async('synthesis.control', '{"action":"stop"}')
-        #     loop = asyncio.get_running_loop()
-        #     await loop.run_in_executor(None, sending.get)
-        # except Exception as e:
-        #     logger.error(f"Error interrupting synthesis: {e}")
+        try:
+            connection = speechsdk.Connection.from_speech_synthesizer(self.speech_synthesizer)
+            sending = connection.send_message_async('synthesis.control', '{"action":"stop"}')
+            loop = asyncio.get_running_loop()
+            await loop.run_in_executor(None, sending.get)
+        except Exception as e:
+            logger.error(f"Error interrupting synthesis: {e}")
 
     async def get_ice_servers(self):
         headers = {}

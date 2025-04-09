@@ -102,6 +102,7 @@ async function handleRealtimeMessages() {
         break;
 
       case "input_audio_buffer.speech_started":
+        audioPlayer.clear();
         makeNewTextBlock("<< Speech Started >>");
         let textElements = formReceivedTextContainer.children;
         latestInputSpeechBlock = textElements[textElements.length - 1];
@@ -198,6 +199,8 @@ const formSessionInstructionsField =
 const formTemperatureField = document.querySelector<HTMLInputElement>("#temperature")!;
 const formVoiceSelection = document.querySelector<HTMLInputElement>("#voice")!;
 const formAvatarVideo = document.getElementById('remoteVideo')!;
+
+formDeploymentOrModelField.value = "gpt-4o-realtime-azure-avatar";
 
 let latestInputSpeechBlock: Element;
 

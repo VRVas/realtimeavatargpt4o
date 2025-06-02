@@ -22,6 +22,13 @@ services:
       - AZURE_OPENAI_KEY=FJNRkv7gRFJKTosOUeR8OW9AWvL9rDM5sW6br0QX1d6LkkIkvJ8BJQQJ99BBACHYHv6XJ3w3AAAAACOGFEt3
       # optional, set this for key based auth
       - SPEECH_REGION=eastus2
-      - SPEECH_RESOURCE_ID=<your speech resource id> # optional, set either this or SPEECH_KEY
+      # - SPEECH_REGION=westeurope
+
+      # - SPEECH_RESOURCE_ID=<your speech resource id> # optional, set either this or SPEECH_KEY
       - SPEECH_KEY=2BnBqb8gNchQGtumJlQUYu6JZqEsZCX2089e6xaqf1cPGoc1iFsAJQQJ99BDACHYHv6XJ3w3AAAYACOGp0X1 # optional, set either this or SPEECH_RESOURCE_ID
-      - AZURE_CLIENT_ID=<your azure client id> # optional, set this for Entra ID auth
+      # - SPEECH_KEY=13nQKIo0nNDpsvNK7gTowMtpeCVVRfwyiI3ttQiKhtnJIAsOhTJYJQQJ99BBAC5RqLJXJ3w3AAAYACOGhBWz
+      
+      # - CUSTOM_TTS_ENDPOINT_URL=https://westeurope.tts.speech.microsoft.com/cognitiveservices/websocket/v1
+      # - CUSTOM_TTS_ENDPOINT_URL=https://ttstraining.cognitiveservices.azure.com
+      # - CUSTOM_TTS_VOICE_NAME=Rasheda_QLC_Arabic
+      # - AZURE_CLIENT_ID=<your azure client id> # optional, set this for Entra ID auth

@@ -200,7 +200,7 @@ const formTemperatureField = document.querySelector<HTMLInputElement>("#temperat
 const formVoiceSelection = document.querySelector<HTMLInputElement>("#voice")!;
 const formAvatarVideo = document.getElementById('remoteVideo')!;
 
-formDeploymentOrModelField.value = "gpt-4o-realtime-azure-avatar";
+formDeploymentOrModelField.value = "gpt4o-realtime-azure-avatar";
 
 let latestInputSpeechBlock: Element;
 
